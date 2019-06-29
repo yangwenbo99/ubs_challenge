@@ -54,14 +54,14 @@ $(document).ready(function () {
 
 <div class="w3-content w3-container" style="max-width:1100px;margin-top:80px;margin-bottom:200">
 	<h2> Payment Order </h2>
-	<div id='validate_info'>
-	</div>
 	<form action='./sign.html' method='get'>
 		<div id='main_form'> </div>
 		<a class='long_button w3-btn' id='next'>Next</a>
 		
 		<div class='info on_finish' style="display:none">
 			All needed fields have been loaded, if you finished filling this form
+		</div>
+		<div id='validate_info' class='info-error' style="display:none">
 		</div>
 		<input type="submit" value="Submit" class='on_finish long_button' style="display:none">
 	</form>

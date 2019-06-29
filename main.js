@@ -11,7 +11,10 @@ function FormDescriptor() {
 				$( '#validate_info' ).html(
 						this.pageDescriptors[f].validateInfo
 				)
+				$( '#validate_info' ).show(500);
 				return false;
+			} else {
+				$( '#validate_info' ).hide(500);
 			}
 		}
 		$( '#validate_info' ).html("")
