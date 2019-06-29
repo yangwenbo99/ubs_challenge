@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	 <head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src='./main.js'></script>
+		<script>
+var globalDesc = new FormDescriptor();
+$(document).ready(function () {
+	$( '#next' ).click(function () {
+		console.log("Next!");
+		globalDesc.loadNext();
+	});
+})
+
+
+		</script>
+	</head> 
+	<body>
+		<h1>Test Form</h1>
+		<div id='validate_info'>
+		</div>
+		<form id='main_form' action='./submit.html' method='get'>
+			<input type="submit" value="Submit">
+		</form>
+		<button id='next'>Next</button>
+
+
+
+	</body>
+
+</html>

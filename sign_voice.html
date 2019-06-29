@@ -1,0 +1,130 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Online payment system - Sign </title>
+  <meta name="description" content="Sign">
+  <meta name="author" content="Paul Yang">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet/less" href="css/w3.css">
+  <link rel="stylesheet" href="css/w3-colors-metro.css">
+  <link rel="stylesheet/less" type="text/css" href="css/main.less" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+$(document).ready(function () {
+	$( '#confirm' ).click(function () {
+		if ( $(this).is( ':checked' )) {
+			$( '#sign_ok' ).show(500);
+		}
+	});
+})
+function move(id) {
+  var elem = document.getElementById(id);
+  var width = 1;
+  var id = setInterval(frame, 100);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+  }
+}
+function enableSubmit() {
+	$( 'input[type=submit]' ).removeAttr('disabled');
+	$( '#submit_ok').show(500);
+}
+	</script>
+
+</head>
+
+<body>
+<nav class="w3-top">
+  <div class="w3-row w3-large">
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block">Home</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block">Plans</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block">About</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+	<h2> Signing payment order using PGP </h2>
+	<div class='option_panel'>
+		<div class='info-ok'>
+			Our system has detected that you have installed the digital signature
+			plugin on your computer.
+
+		</div>
+
+		<div class='info'>
+			Please type your name in the following block.
+		</div>
+		<div class='panel'>
+			<label for='Name'>The form is signed by</label>
+			<input type='text' class='w3-input'>
+		</div>
+		<div class='panel'>
+			<input class="w3-check" type="checkbox" id='confirm'>
+			<label>I hereby confirms that I am the authorized person to use
+			this tool and I am the authorized person to order this transaction. </label>
+		</div>
+
+		<div class='record' id='sign_ok' style='display:none;'>
+			<div class='info'>
+				Press the Record button, and read aloud your name.
+			</div>
+			<div style='overflow: auto;' class='w3-center'>
+				<input type='button' class='short_button w3-btn' value='Record' onclick='move("bar1")' style='width:20%; float:left' id='rec1'>
+				<div style='margin: auto; margin-left:25%'>
+					<div class="w3-light-grey w3-round">
+						<div class="w3-container w3-round w3-metro-blue" 
+							style="height:20px; width:0%" id='bar1'></div>
+					</div> 
+				</div>
+			</div>
+
+			<div class='info'>
+				Then, press the Record button, and read the reference number of this 
+				document: 8AFD4D5620376
+			</div>
+
+			<div style='overflow: auto;' class='w3-center'>
+				<input type='button' class='short_button w3-btn' value='Record' \
+				onclick='move("bar2"); enableSubmit()' style='width:20%; float:left' id='rec2'>
+				<div style='margin: auto; margin-left:25%'>
+					<div class="w3-light-grey w3-round">
+						<div class="w3-container w3-round w3-metro-blue" 
+							style="height:20px; width:0%" id='bar2'></div>
+					</div> 
+				</div>
+			</div>
+		</div>
+
+		<div class='info-ok' id='submit_ok' style='display:none'>
+			After your voice been recorded, it will be sent to our server for verification.
+		</div>
+		<input type='submit' class='long_button w3-btn' value='Submit' id='submit' disabled>
+		
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,25 @@
+<div class='to_load' id='first_form'>
+  First name: <input type="text" name="fname" class='compulsary'><br>
+  Last name:  <input type="text" name="lname" class='compulsary'><br>
+	<script class='info_script'>
+		var first = {
+			validateInfo: "", 
+			validate: function () {
+				var res =
+						$( '#first_form input:text.compulsary' ).filter(
+						function () {
+							return this.value == "";
+						}).length == 0;
+				if (!res) {
+					this.validateInfo = 
+							"All fields in part 1 must be filled";
+				}
+				return res;
+			},
+			getRequires: function () {
+				return ["second"];
+			}
+		};
+		globalDesc.pageDescriptors.push(first);
+	</script>
+</div>

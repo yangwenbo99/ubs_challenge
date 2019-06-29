@@ -1,0 +1,126 @@
+<div class='pp_form_group to_load' id='basic_infomation'>
+<div class='pp_group1'>
+	<h3>Account details</h3>
+
+	<label for="account_name">Account name</label>
+	<input type="text" placeholder="Enter Account Name" name="account_name" 
+			required>
+	<br>
+	<label for="account_number">Account number</label>
+	<input type="text" placeholder="Enter Account number" name="account_number" 
+			required>
+</div>
+
+<div class='pp_group1'>
+	<h3>Transaction information</h3>
+	<div class='pp_group2'>
+		<label for="currency" class='short_field'>Currency</label>
+		<select name="currency" class='short_field' required>
+			<option value='hkd'>HKD</option>
+			<option value='usd'>USD</option>
+			<option value='cny'>CNY</option>
+			<option value='twd'>TWD</option>
+		</select>
+		<label for="amount" class='short_field'>Amount</label>
+		<input type="number" class='short_field' name="amount" required>
+
+		<br>
+
+		<label for="value_date">Value date</label>
+		<input type="date" name="value_date" 
+				required>
+	</div>
+	<div class='pp_group2'>
+		<h4> Charges </h4>
+		<label class='radio_label'>
+			<input type="radio" name="charges" value='byBene'>
+			Cost borne by beneficiary</label>
+		<label class='radio_label'>
+			<input type="radio" name="charges" value='byPayer'>
+			Cost borne by payer</label>
+		<label class='radio_label'>
+			<input type="radio" name="charges" value='shared' required>
+			Shared costs</label>
+	</div>
+</div>
+
+<div class='pp_group1'>
+	<h3>Beneficiary information</h3>
+	<div class='pp_group2'>
+		<h4> Beneficiary </h4>
+		<label for="beneficiary_account_no" >Beneficiary Account No.</label>
+		<input type='text' name="beneficiary_account_no" required>
+		<br>
+		<label for="beneficiary_name" >Beneficiary name</label>
+		<input type='text' name="beneficiary_name" required>
+	</div>
+
+	<div class='pp_group2'>
+		<h4> Beneficiary's Bank </h4>
+		<label for="bic_code" >BIC code</label>
+		<input type='text' name="bic_code" required>
+		<br>
+		<label for="bank_name" >Bank name</label>
+		<input type='text' name="bank_name" required>
+		<br>
+
+	</div>
+</div>
+
+<div class='pp_group1'>
+	Do you need to indicate a intermediary Bank?
+
+	<label class='radio_label'>
+		<input type="radio" name="has_intermediary_bank" value='yes'>
+		Yes
+	</label>
+	<label class='radio_label'>
+		<input type="radio" name="has_intermediary_bank" value='no' required>
+		No
+	</label>
+</div>
+
+<script class='info_script'>
+	var basic_information = {
+		validateInfo: "", 
+		validate: function () {
+			var res =
+					$( '#basic_infomation input.compulsary' ).filter(
+					function () {
+						return this.value == "";
+					}).length == 0;
+			res = res && 
+					$( '#basic_infomation input' ).filter('[required]').filter(
+					function () {
+						console.log(this.value);
+						return this.value == "";
+					}).length == 0;
+
+			if (!res) {
+				this.validateInfo = 
+						"All required fields must be filled";
+				return false;
+			}
+
+			return res;
+		},
+		getRequires: function () {
+			var res = [];
+			if ($( 
+					"input[name=has_intermediary_bank][value='yes']" 
+					).prop('checked')) {
+				res.push('intermediary_bank');
+			}
+			console.log($( "input[name=bic_code]" ).val());
+			console.log($( "input[name=bic_code]" ).val().substr(4, 6));
+			if ($( "input[name=bic_code]" ).val().substr(4, 2) == 'CA') {
+				res.push('canada_bank');
+			}
+			return res;
+		}
+	};
+	globalDesc.pageDescriptors.push(basic_information);
+</script>
+
+</div>
+
